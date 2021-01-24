@@ -2,8 +2,8 @@ export default class YoutubeFetch {
   constructor(key) {
     this.key = key;
     this.requestOptions = {
-      method: 'GET',
-      redirect: 'follow',
+      method: "GET",
+      redirect: "follow",
     };
   }
 
@@ -27,7 +27,7 @@ export default class YoutubeFetch {
         this.getRequestOptions
       );
       const result = await response.json();
-      return result.items.map(item => ({ ...item, id: item.id.videoId }));
+      return result.items.map((item) => ({ ...item, id: item.id.videoId }));
     } catch (err) {
       return console.log(err);
     }

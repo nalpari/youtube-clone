@@ -1,15 +1,15 @@
 export default class Youtube {
   constructor(httpClient) {
     this.youtube = httpClient;
-  };
+  }
 
   async mostPopular() {
-    const response = await this.youtube('videos', {
+    const response = await this.youtube("videos", {
       params: {
-        part: 'snippet',
-        chart: 'mostPopular',
-        maxResults: 25
-      }
+        part: "snippet",
+        chart: "mostPopular",
+        maxResults: 25,
+      },
     });
 
     return response.data.items;
@@ -26,16 +26,19 @@ export default class Youtube {
   }
 
   async search(query) {
-    const response = await this.youtube('search', {
+    const response = await this.youtube("search", {
       params: {
-        part: 'snippet',
-        type: 'video',
+        part: "snippet",
+        type: "video",
         q: query,
-        maxResults: 25
-      }
+        maxResults: 25,
+      },
     });
 
-    return response.data.items.map(item => ({ ...item, id: item.id.videoId }));
+    return response.data.items.map((item) => ({
+      ...item,
+      id: item.id.videoId,
+    }));
     // try {
     //   const response = await fetch(
     //     `https://www.googleapis.com/youtube/v3/search?part=snippet&chart=mostPopular&type=video&maxResults=25&q=${query}&key=${this.key}`,
